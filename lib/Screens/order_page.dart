@@ -16,7 +16,7 @@ class _OrderPageState extends State<OrderPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Orders"),
+        title: Text("Booking Status"),
       ),
       body: StreamBuilder(
           stream: FirebaseFirestore.instance

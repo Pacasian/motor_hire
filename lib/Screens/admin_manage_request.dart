@@ -170,6 +170,13 @@ Widget buildReserveItems(QuerySnapshot? dataList,CollectionReference ref,int? le
                     Text('\t\tEmail    : ${dataList?.docs[index]["email"]}'),
                     const SizedBox(height: 10,),
                     Text('\t\tLicense No.: ${dataList?.docs[index]["registrationID"]}'),
+                    const SizedBox(height: 5,),
+                    GestureDetector(   onTap: () async {
+        await showDialog(
+        context: context,
+        builder: (_) => ImageDialog()
+        );
+        }, child: const Text('\t\tView License')),
                     const SizedBox(height: 10,),
                     Text("\t\tUserID: ${dataList?.docs[index]["uid"]}"),
                     // Text(dataList[index]["registrationID"]),
@@ -185,6 +192,23 @@ Widget buildReserveItems(QuerySnapshot? dataList,CollectionReference ref,int? le
       });
 }
 
+class ImageDialog extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Container(
+        width: 200,
+        height: 200,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: NetworkImage('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Projekt_nowego_prawa_jazdy.png/220px-Projekt_nowego_prawa_jazdy.png'),
+                fit: BoxFit.cover
+            )
+        ),
+      ),
+    );
+  }
+}
 
 Future getReserveData1(List reserveList,List reserveListID) async {
   try {

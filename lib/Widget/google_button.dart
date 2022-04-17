@@ -41,7 +41,7 @@ class _GoogleButtonState extends State<GoogleButton> {
           await signInWithGoogle().then((result) {
             print(result);
             if (result != null) {
-              if (result.email=="sumithkumar7102@gmail.com"){
+              if (result.email=="sumithkumar710@gmail.com"){
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
                     builder: (context) => AdminHome(),

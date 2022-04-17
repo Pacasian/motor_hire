@@ -2,8 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:motor_hire/Screens/profile.dart';
 
+import '../Firestore/authenication.dart';
 import 'admin_add_cars.dart';
 import 'admin_manage_request.dart';
+import 'login.dart';
 
 
 class AdminHome extends StatelessWidget {
@@ -16,9 +18,10 @@ class AdminHome extends StatelessWidget {
       appBar: AppBar(
         title: Text("Admin Home"),
         actions: [
-IconButton(onPressed: (){
-  Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile()));
-}, icon: Icon(Icons.account_circle))
+          IconButton(onPressed: (){
+            signOut();
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const LoginScreen(),),);
+          }, icon: const Icon(Icons.logout)),
         ],
       ),
       body: GridView(
