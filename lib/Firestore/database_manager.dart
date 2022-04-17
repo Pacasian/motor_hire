@@ -13,13 +13,13 @@ class FireStoreDataBase {
       FirebaseFirestore.instance.collection("Reserve");
 
 
-   Future getData() async {
+   Future getData(String _loaction) async {
     try {
       //to get data from a single/particular document alone.
       // var temp = await collectionRef.doc("<your document ID here>").get();
 
       // to get data from all documents sequentially
-      await collectionRef.get().then((querySnapshot) {
+      await collectionRef.where('location',isEqualTo:_loaction).get().then((querySnapshot) {
         for (var result in querySnapshot.docs) {
           studentsList.add(result.data());
         }

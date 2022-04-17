@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:motor_hire/Screens/order_page.dart';
 
 import '../Firestore/authenication.dart';
 import 'login.dart';
@@ -53,7 +54,9 @@ class Profile extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: TextButton(onPressed: (){}, child: Text("Orders",style: Theme.of(context).textTheme.headline2,),),
+                child: TextButton(onPressed: (){
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const OrderPage(),),);
+                }, child: Text("Orders",style: Theme.of(context).textTheme.headline2,),),
               ),
               ElevatedButton(onPressed: (){
                 signOut();

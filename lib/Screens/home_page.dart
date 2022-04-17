@@ -22,7 +22,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: FutureBuilder(
-        future: FireStoreDataBase().getData(),
+        future: FireStoreDataBase().getData("dsfdsf"),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return const Text(

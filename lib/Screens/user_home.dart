@@ -15,6 +15,8 @@ class UserHome extends StatefulWidget {
 
 class _UserHomeState extends State<UserHome> {
   List dataList = [];
+  String dropdownValue = 'Dublin';
+  List<String> _list=['Dublin', 'Limerick', 'Galway', 'Cork'];
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -30,6 +32,7 @@ class _UserHomeState extends State<UserHome> {
           Container(
           width: 100,
           //
+
           //   child: Lottie.network(
           //   'https://assets3.lottiefiles.com/packages/lf20_asjtnqce.json',
           //   fit: BoxFit.fill,
@@ -40,10 +43,35 @@ class _UserHomeState extends State<UserHome> {
             child: Column(
               children: [
                 SizedBox(
-                  height: size.height*0.1,
+                  height: size.height*0.04,
+                ),
+                DropdownButton<String>(
+                  value: dropdownValue,
+                  icon: const Icon(Icons.arrow_downward),
+                  elevation: 16,
+                  style: const TextStyle(color: Colors.deepPurple),
+                  underline: Container(
+                    height: 2,
+                    color: Colors.deepPurpleAccent,
+                  ),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdownValue = newValue!;
+                    });
+                  },
+                  items: _list
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
+                SizedBox(
+                  height: size.height*0.04,
                 ),
                 FutureBuilder(
-                  future: FireStoreDataBase().getData(),
+                  future: FireStoreDataBase().getData(dropdownValue),
                   builder: (context, snapshot) {
                     if (snapshot.hasError) {
                       return const Text(
